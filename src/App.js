@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Place from './Place.js'
+import Place from './Place.js';
+import Form from './Form.js'
 
 let dumbPlaces = [
-  {name: "Aldy", type: "library",
+  {id: 0, name: "Aldy", type: "library",
   location: {
     lat: "38.0364566",
     long: "-78.5053683"
   },
   open_now: true
 },
-{name: "Clem", type: "library",
+{id: 1, name: "Clem", type: "library",
 location: {
   lat: "38.036346",
   long: "-78.506085"

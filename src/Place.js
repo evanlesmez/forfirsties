@@ -6,9 +6,16 @@ export default class Place extends Component {
     constructor(props){
         super(props);
         this.state = {
+            name: "",
             radius: 3000,
             type: 'library',
-            places: [this.props.p]
+            places: this.props.p,  // Be careful with arrays!!!!!!
+            type: "",
+    location: {
+        lat: "",
+        long: ""
+        },
+        open_now: true
             
         }
 
@@ -22,11 +29,39 @@ export default class Place extends Component {
     // console.log(error);
     // });
     // }
-    render() {
+    componentDidMount(){
+        
         console.log(this.state.places);
+        let realPlaces = this.state.places.map((place)=>{
+            return {id: place.id, name: place.name, type: place.type, 
+                location: place.location, open_now: place.open_now }
+        })
+        
+        this.setState({places: realPlaces});
+            console.log(this.state.places);
+    }
+     
+
+    render() {
+    
+    const listy = (
+        <ul>
+      {this.state.places.map((p) => 
+        <li key={p.id}>
+          <p> Name: {p.name} </p>
+          <p> Type: {p.type} </p> 
+          <p> Lat: {p.location.lat} </p>
+          <p> Open: {p.open_hours}</p>
+        </li>
+        
+      )}
+      </ul>
+    );
+    
+
       return (
         <div>
-
+        {listy}
         </div>
       );
     }
