@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Form from './Form.js';
 
 let key = 'AIzaSyBScFw2LtRCXni2EFQDKgmaSFEwyLYRVGM';
 export default class Place extends Component {
     constructor(props){
         super(props);
         this.state = {
-            name: "",
-            radius: 3000,
-            type: 'library',
             places: this.props.p,  // Be careful with arrays!!!!!!
-            type: "",
-    location: {
-        lat: "",
-        long: ""
-        },
-        open_now: true
-            
+            fields: {}
+            // name: "",
+        //     radius: "",
+        //     type: "",
+        // location: {
+        // lat: "",
+        // long: ""
+        // },
+        // open_now: true
         }
 
     }
@@ -41,26 +41,30 @@ export default class Place extends Component {
             console.log(this.state.places);
     }
      
-
+    onSubmit = (fields) => {
+        this.setState({ fields});
+        console.log({fields});
+    };
     render() {
     
     const listy = (
-        <ul>
+        <div>
       {this.state.places.map((p) => 
-        <li key={p.id}>
+        <div key={p.id}>
           <p> Name: {p.name} </p>
           <p> Type: {p.type} </p> 
           <p> Lat: {p.location.lat} </p>
           <p> Open: {p.open_hours}</p>
-        </li>
+        </div>
         
       )}
-      </ul>
+     </div> 
     );
     
 
       return (
         <div>
+        <Form onSubmit = {fields => this.onSubmit(fields)}/>
         {listy}
         </div>
       );
