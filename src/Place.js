@@ -7,49 +7,45 @@ export default class Place extends Component {
     constructor(props){
         super(props);
         this.state = {
-            places: this.props.p,  // Be careful with arrays!!!!!!
-            fields: {}
-            // name: "",
-        //     radius: "",
-        //     type: "",
-        // location: {
-        // lat: "",
-        // long: ""
-        // },
-        // open_now: true
-        }
+            places: [],  // Be careful with arrays!!!!!!
+            fields: {type: "", 
+            radius: ""}
+        };
 
-    }
-    // componentDidMount(){
-    //     axios.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=38.034269,%20-78.494087&radius=1500&keyword=library&key='+key)
-    // .then(function (response) {
-    // console.log(response);
-    // })
-    // .catch(function (error) {
-    // console.log(error);
-    // });
-    // }
-    componentDidMount(){
+    };
+    
         
-        console.log(this.state.places);
-        let realPlaces = this.state.places.map((place)=>{
-            return {id: place.id, name: place.name, type: place.type, 
-                location: place.location, open_now: place.open_now }
-        })
-        
-        this.setState({places: realPlaces});
-            console.log(this.state.places);
-    }
-     
+
+    
     onSubmit = (fields) => {
         this.setState({ fields});
-        console.log({fields});
+        let type = this.state.fields.type;
+        let radiusNum = parseFloat(this.state.fields.radius) * 1609.34; // Miles to meters
+        let radiusStr = radiusNum.toString();
+        console.log("Type: " + type + " Radius: " + radiusStr);
+        
+        axios.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=38.034269,%20-78.494087&radius='+radiusStr+'&keyword='+type+'&key='+key)
+        .then( (response) =>{
+        let axiosPlaces = response.data.results.map((place)=>{
+        return {id: place.id, name: place.name, types: place.types, 
+                location: place.geometry.location }
+        });
+        console.log(axiosPlaces);
+        this.setState({
+            places: axiosPlaces
+        });
+        console.log(this.state.places);
+    })
+        .catch(function (error) {
+        console.log(error);
+        });
     };
+    
     render() {
     
     const listy = (
         <div>
-      {this.state.places.map((p) => 
+      {/* {this.state.places.map((p) => 
         <div key={p.id}>
           <p> Name: {p.name} </p>
           <p> Type: {p.type} </p> 
@@ -57,7 +53,7 @@ export default class Place extends Component {
           <p> Open: {p.open_hours}</p>
         </div>
         
-      )}
+      )} */}
      </div> 
     );
     

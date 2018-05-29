@@ -25,21 +25,8 @@ export default class Form extends Component {
   render() {
     return (
       <div>
-      <form >
-        <br />
-        <input
-        name = "radius"   // name is parameter 
-        type = "number"  max = "10"
-        placeholder = "Distance in Miles" 
-        value={this.state.radius}
-        /* onChange={e => this.setState({name: e.target.value})}/> */
-        onChange={e => this.change(e)}/>
-        <br   />
-        <button onClick = {e => this.onSubmit(e)}>Submit</button>
-      </form>
-      
       <div>
-        <fieldset onClick = {console.log(this.state)}>
+        <fieldset /*onClick = {console.log(this.state)}*/>
           <legend> What are you looking for? </legend>
           <div >
             <input type="checkbox" id="libraries" 
@@ -55,6 +42,18 @@ export default class Form extends Component {
           </div>
         </fieldset>
       </div>
+      <form >
+        <br />
+        <input
+        name = "radius"   // name is parameter 
+        type = "number"  max = "10"
+        placeholder = "Distance in Miles" 
+        value={this.state.radius}
+        /* onChange={e => this.setState({name: e.target.value})}/> */
+        onChange={e => this.change(e)}/>
+        <br   />
+        <button onClick = {e => this.onSubmit(e)}>Submit</button>
+      </form>
       </div>
     );
   }
