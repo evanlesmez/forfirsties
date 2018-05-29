@@ -30,7 +30,7 @@ export default class Form extends Component {
           <legend> What are you looking for? </legend>
           <div >
             <input type="checkbox" id="libraries" 
-            name="type" value= "libraries"
+            name="type" value= "libraries" 
             onChange = {e => this.change(e)} />
             <label htmlFor = "libraries"> Libraries</label>
           </div>

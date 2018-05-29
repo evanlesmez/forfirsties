@@ -14,9 +14,6 @@ export default class Place extends Component {
 
     };
     
-        
-
-    
     onSubmit = (fields) => {
         this.setState({ fields});
         let type = this.state.fields.type;
@@ -30,9 +27,8 @@ export default class Place extends Component {
         return {id: place.id, name: place.name, types: place.types, 
                 location: place.geometry.location }
         });
-        console.log(axiosPlaces);
         this.setState({
-            places: axiosPlaces
+            places: axiosPlaces, 
         });
         console.log(this.state.places);
     })
