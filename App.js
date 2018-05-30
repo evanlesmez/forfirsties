@@ -7,25 +7,6 @@ import Map1 from './Map1.js'
 import axios from 'axios'; 
 let key = 'AIzaSyBScFw2LtRCXni2EFQDKgmaSFEwyLYRVGM';
 
-let dumbPlaces = [
-  {id: 0, name: "Aldy", type: "library",
-  location: {
-    lat: "38.0364566",
-    long: "-78.5053683"
-  },
-  open_now: true
-},
-{id: 1, name: "Clem", type: "library",
-location: {
-  lat: "38.036346",
-  long: "-78.506085"
-},
-open_now: true
-}
-];
-
-
-
 class App extends Component {
   constructor() {
     super();
