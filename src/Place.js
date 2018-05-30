@@ -60,7 +60,7 @@ export default class Place extends Component {
         <div>
         <Form onSubmit = {fields => this.onSubmit(fields)}/>
         {listy}
-        <Map1 data1 = {this.state.data} />
+        <Map1 data1 = {this.state.places} />
         </div>
       );
     }

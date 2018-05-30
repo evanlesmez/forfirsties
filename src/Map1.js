@@ -26,26 +26,14 @@ const Map = ReactMapboxGl({
             popups: null,  
         }; 
     }
-
-  
-    
-
-
-
     render() {
-
+      console.log(markers);
       console.log(this.props.data1)
       const markers = this.props.data1.map(shop => {
         return (
           <Marker
-          key = {shop.key}
           coordinates={shop.coord}
-          anchor="bottom"
-          onClick={(e) => {
-            this.setState({center:shop.coord, zoom: [18]});
-            
-            }
-            }
+
           >
           <img src={"http://maps.google.com/mapfiles/ms/icons/red.png"}/>
           </Marker>
@@ -70,6 +58,7 @@ const Map = ReactMapboxGl({
           center = {this.state.center}
           zoom = {this.state.zoom}
         >
+        {markers}
         <ZoomControl/>
         <ScaleControl/>
         {/* <Popup
@@ -80,7 +69,7 @@ const Map = ReactMapboxGl({
           <h1>Popup</h1>
         </Popup> */}
 
-      {markers}
+      
       {/* {popups} */}
         
         </Map>
