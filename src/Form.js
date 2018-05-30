@@ -38,7 +38,7 @@ export default class Form extends Component {
             <input type="checkbox" id="gyms" 
             name="type" value= "gyms"
             onChange = {e => this.change(e)} />
-            <label htmlFor = "gyms"> Gyms</label>
+            <label htmlFor = "gyms"> Gyms</label>gi
           </div>
         </fieldset>
       </div>
