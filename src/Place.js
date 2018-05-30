@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Form from './Form.js';
 
+const frontUrl = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
 let key = 'AIzaSyBScFw2LtRCXni2EFQDKgmaSFEwyLYRVGM';
 export default class Place extends Component {
     constructor(props){
         super(props);
         this.state = {
             places: [],  // Be careful with arrays!!!!!!
-            fields: {type: "", 
+            fields: {typeWord: "", 
             radius: ""}
         };
 
@@ -16,15 +17,16 @@ export default class Place extends Component {
     
     onSubmit = (fields) => {
         this.setState({ fields});
-        let type = this.state.fields.type;
+        let typeWord = this.state.fields.typeWord;
         let radiusNum = parseFloat(this.state.fields.radius) * 1609.34; // Miles to meters
         let radiusStr = radiusNum.toString();
-        console.log("Type: " + type + " Radius: " + radiusStr);
-        
-        axios.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=38.034269,%20-78.494087&radius='+radiusStr+'&keyword='+type+'&key='+key)
+        console.log("Type: " + typeWord + " Radius: " + radiusStr);
+       
+        axios.get(frontUrl+'location=38.034269,%20-78.494087&radius='+radiusStr+'&keyword='+typeWord+'&key='+key)
         .then( (response) =>{
+        
         let axiosPlaces = response.data.results.map((place)=>{
-        return {id: place.id, name: place.name, types: place.types, 
+            return {id: place.id, name: place.name, types: place.types, 
                 location: place.geometry.location }
         });
         this.setState({

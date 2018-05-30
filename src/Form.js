@@ -7,41 +7,61 @@ export default class Form extends Component {
     super(props);
     this.state = {
       radius: "",
-      type: ""
+      typeWord: "",
+      libraries: false,
+      gyms: false
     };
-
+      // Confusing but could try to make a way to pass in a bunch of types rather
+      // than hardcode and map through, just checking is difficult
+      //Probably why people use search bars
     }
   
   change = (e) => {
     this.setState({
+      
       [e.target.name]: e.target.value
     });
   };
-  
+
+  onChecker = e => { 
+    this.setState({
+      [e.target.name]: e.target.checked
+    });
+    this.setState({
+      typeWord: e.target.name
+    });
+    };
+      
   onSubmit = e => {
     e.preventDefault();
     this.props.onSubmit(this.state); // Pass back to parent
   };
   render() {
+    console.log(this.state)
     return (
+      
       <div>
+     
       <div>
         <fieldset /*onClick = {console.log(this.state)}*/>
           <legend> What are you looking for? </legend>
           <div >
-            <input type="checkbox" id="libraries" 
-            name="type" value= "libraries" 
-            onChange = {e => this.change(e)} />
+            <input type="checkbox" id = "typeWord" 
+            name= "libraries" 
+            onChange={e => this.onChecker(e)}
+            checked = {this.state.libraries}/>
             <label htmlFor = "libraries"> Libraries</label>
           </div>
-          <div>
-            <input type="checkbox" id="gyms" 
-            name="type" value= "gyms"
-            onChange = {e => this.change(e)} />
-            <label htmlFor = "gyms"> Gyms</label>gi
+          <div >
+            <input type="checkbox" id = "typeWord" 
+            name= "gyms" 
+            onChange={e => this.onChecker(e)}
+            checked = {this.state.gyms}/>
+            <label htmlFor = "gyms"> Gyms</label>
           </div>
         </fieldset>
       </div>
+      
       <form >
         <br />
         <input
