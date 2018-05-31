@@ -21,9 +21,11 @@ const Map = ReactMapboxGl({
     constructor() {
         super();
         this.state = {
-            center: [-78.5080, 38.0336],
-            zoom: [15],
-            popups: null,  
+          center: [-78.5080, 38.0336],
+          zoom: [12],
+          popupcoord: [135.0000, 82.8628], 
+          popupname: "", 
+          address:""  
         }; 
     }
     render() {
@@ -32,22 +34,17 @@ const Map = ReactMapboxGl({
       const markers = this.props.data1.map(shop => {
         return (
           <Marker
+          key = {shop.key}
           coordinates={shop.coord}
-
+          anchor="bottom"
+          onClick={(e) => {
+            this.setState({center:shop.coord, zoom: [15]});
+            this.setState({popupcoord: shop.coord, popupname: shop.name, address: shop.address})
+            }
+            }
           >
           <img src={"http://maps.google.com/mapfiles/ms/icons/red.png"}/>
           </Marker>
-        );
-      });
-      const popups = this.props.data1.map(shop => {
-        return (
-          <Popup
-          coordinates={shop.coord}
-          offset={{
-            'bottom-left': [12, -38],  'bottom': [0, -38], 'bottom-right': [-12, -38]
-          }}>
-          <p>Popup</p>
-        </Popup>
         );
       });
       console.log(markers);
@@ -61,16 +58,15 @@ const Map = ReactMapboxGl({
         {markers}
         <ZoomControl/>
         <ScaleControl/>
-        {/* <Popup
-          coordinates={[-78.506085, 38.036346]}
-          offset={{
-            'bottom-left': [12, -38],  'bottom': [0, -38], 'bottom-right': [-12, -38]
-          }}>
-          <h1>Popup</h1>
-        </Popup> */}
+        <Popup
+            coordinates={this.state.popupcoord}
+            offset={{
+              'bottom-left': [12, -38],  'bottom': [0, -38], 'bottom-right': [-12, -38]
+            }}>
+            <p>{this.state.popupname}</p>
+            <p>{this.state.address}</p>
 
-      
-      {/* {popups} */}
+        </Popup>
         
         </Map>
       );

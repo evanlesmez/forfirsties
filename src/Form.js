@@ -9,7 +9,8 @@ export default class Form extends Component {
       radius: "",
       typeWord: "",
       libraries: false,
-      gyms: false
+      gyms: false, 
+      attractions : false, 
     };
       // Confusing but could try to make a way to pass in a bunch of types rather
       // than hardcode and map through, just checking is difficult
@@ -59,6 +60,13 @@ export default class Form extends Component {
             checked = {this.state.gyms}/>
             <label htmlFor = "gyms"> Gyms</label>
           </div>
+          <div >
+          <input type="checkbox" id = "typeWord" 
+            name= "attractions" 
+            onChange={e => this.onChecker(e)}
+            checked = {this.state.attractions}/>
+            <label htmlFor = "Attractions"> Activities</label>
+            </div>
         </fieldset>
       </div>
       
