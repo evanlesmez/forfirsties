@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios'
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
@@ -10,6 +11,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import './App.css';
+let key = 'AIzaSyBScFw2LtRCXni2EFQDKgmaSFEwyLYRVGM';
 
 
 export default class Form extends Component {
@@ -22,6 +24,8 @@ export default class Form extends Component {
       libraries: false,
       gyms: false, 
       attractions : false, 
+      street: "", 
+      city: "",  
     };
       // Confusing but could try to make a way to pass in a bunch of types rather
       // than hardcode and map through, just checking is difficult
@@ -30,7 +34,6 @@ export default class Form extends Component {
   
   change = (e) => {
     this.setState({
-      
       [e.target.name]: e.target.value
     });
   };
@@ -50,13 +53,49 @@ export default class Form extends Component {
   };
 
 
+
   render() {
     console.log(this.state)
     return (
       
       <div>
-     
+          {/* <div className= "addy">
+            <TextField
+                id="name"
+                label="Address"
+                value={this.state.name}
+                margin="normal"
+              />
+              <TextField
+                id="name"
+                label="City"
+                value={this.state.name}
+                margin="normal"
+              />
+              <TextField
+                id="name"
+                label="Country"
+                value={this.state.name}
+                margin="normal"
+              />
+          </div>  */}
       <div>
+      <div className= "addy">
+            <TextField
+                name = "street"
+                label="Address"
+                value={this.state.name}
+                onChange={e => this.change(e)}
+                margin="normal"
+              />
+              <TextField
+                name = "city"
+                label="City"
+                value={this.state.name}
+                onChange={e => this.change(e)}
+                margin="normal"
+              />
+          </div> 
         <FormControl /*onClick = {console.log(this.state)}*/>
           <legend> What are you looking for? </legend>
           <div >

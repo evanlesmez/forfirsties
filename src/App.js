@@ -12,6 +12,8 @@ class App extends Component {
         <div className = "title" >
       <b> For the Firsties </b>
         </div> 
+      {/* <img src="Outstanding-Road-Map-Vectors-3.svg"  width="42" height="42">
+      </img> */}
           <Place/>
       </div>
     );

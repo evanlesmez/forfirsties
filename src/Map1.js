@@ -7,6 +7,7 @@ import { ZoomControl } from "react-mapbox-gl";
 import { ScaleControl } from "react-mapbox-gl";
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
+import image from './Outstanding-Road-Map-Vectors-3.jpg'
 let key = 'AIzaSyBScFw2LtRCXni2EFQDKgmaSFEwyLYRVGM';
 
 

@@ -4,6 +4,7 @@ import './Place.css';
 import Form from './Form.js';
 import Map1 from './Map1.js';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
 
 //https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=48.856614%2C2.3522219&radius=20000&keyword=things%20to%20do%20in%20Paris&rankby=prominence&key=YOUR_API_KEY
@@ -18,7 +19,9 @@ export default class Place extends Component {
         this.state = {
             places: [],  // Be careful with arrays!!!!!!
             fields: {typeWord: "", 
-            radius: ""}
+            radius: ""},
+            street: "", 
+            city: ""
         };
     };
     
@@ -28,7 +31,8 @@ export default class Place extends Component {
         let radiusNum = parseFloat(this.state.fields.radius) * 1609.34; // Miles to meters
         let radiusStr = radiusNum.toString();
         console.log("Type: " + typeWord + " Radius: " + radiusStr);
-       
+        axios.get(frontUrl)
+
         axios.get(frontUrl+'location=38.034269,%20-78.494087&radius='+radiusStr+'&keyword='+typeWord+'&key='+key)
         .then( (response) =>{
             let axiosPlaces = response.data.results.map((place)=>{
@@ -55,6 +59,7 @@ export default class Place extends Component {
     //   };
     
     render() {
+    console.log(this.state); 
     
     const listy = (
         <div>
@@ -76,6 +81,7 @@ export default class Place extends Component {
         className = "components">
         <div
         class = "Form">
+
         <Form onSubmit = {fields => this.onSubmit(fields)}/>
         {listy}
         {/* <Button variant="raised" color="secondary"  onClick = {e => this.onHit(e)}>
