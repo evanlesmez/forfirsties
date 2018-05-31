@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './Place.css';
 import Form from './Form.js';
 import Map1 from './Map1.js';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+
 
 //https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=48.856614%2C2.3522219&radius=20000&keyword=things%20to%20do%20in%20Paris&rankby=prominence&key=YOUR_API_KEY
 
@@ -15,7 +19,8 @@ export default class Place extends Component {
         this.state = {
             places: [],  // Be careful with arrays!!!!!!
             fields: {typeWord: [], 
-            radius: ""}
+            radius: ""},
+            street: "",    
         };
     };
     onSubmit = (fields) => {
@@ -50,15 +55,32 @@ export default class Place extends Component {
             places: [],  
         });
     };
+
+    // onHit = e => {
+    //     e.preventDefault();
+    //     this.setState({
+    //         places: [],  // Be careful with arrays!!!!!!
+    //         fields: {typeWord: "", 
+    //         radius: ""}
+    //     })
+    //   };
     
     render() {
-
       return (
-        <div>
-        <Form onSubmit = {fields => this.onSubmit(fields)}
-            onReset = {e => this.onReset(e)}/>
+        <div
+        className = "components">
+        <div
+        class = "Form">
 
-        <Map1 data1 = {this.state.places} />
+        <Form onSubmit = {fields => this.onSubmit(fields)}
+        onReset = {e => this.onReset(e)}/>/>
+        </div>
+        <div
+        class = "Map"> 
+        <Map1
+        data1 = {this.state.places} />
+        </div> 
+
         </div>
       );
     }

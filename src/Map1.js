@@ -7,6 +7,8 @@ import { ScaleControl } from "react-mapbox-gl";
 
 
 
+
+
 const Map = ReactMapboxGl({
     accessToken: 'pk.eyJ1IjoiZGVlcGFrZzEyMyIsImEiOiJjamhtN3gxNzcwOXdkMzBwbGM0dXRpYmZxIn0.qN-2IKGQMoYjyg8rHThRLA'
   });
@@ -22,7 +24,18 @@ const Map = ReactMapboxGl({
           popupname: "", 
           address:""  
         }; 
+
     }
+
+    onSubmit = e => {
+      e.preventDefault();
+      this.setState({
+        center: [-78.5080, 38.0336], 
+        zoom: [12],
+        popupcoord: [135.0000, 82.8628]
+      }); 
+    };
+
     render() {
       let markers = this.props.data1.map(shop => {
         return (
@@ -42,11 +55,13 @@ const Map = ReactMapboxGl({
       });
       
       return (
+        <div>
         <Map
           style="mapbox://styles/deepakg123/cjhqzkvx54nra2qmjyc8d4n7t"
-          containerStyle={{ width: '100vw', height: '70vh'}}
+          containerStyle={{ width: '80vw', height: '80vh'}}
           center = {this.state.center}
           zoom = {this.state.zoom}
+
         >
         {markers}
         <ZoomControl/>
@@ -60,8 +75,13 @@ const Map = ReactMapboxGl({
             <p>{this.state.address}</p>
 
         </Popup>
-        
         </Map>
+
+        <Button variant="raised" color="secondary"  
+        onClick = {e => this.onSubmit(e)}>
+        Reset Map 
+      </Button>
+      </div> 
       );
     }
   }
