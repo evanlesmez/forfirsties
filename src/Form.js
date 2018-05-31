@@ -18,7 +18,6 @@ export default class Form extends Component {
   
   change = (e) => {
     this.setState({
-      
       [e.target.name]: e.target.value
     });
   };
