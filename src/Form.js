@@ -7,9 +7,10 @@ export default class Form extends Component {
     super(props);
     this.state = {
       radius: "",
-      typeWord: "",
+      typeWord: [],
       libraries: false,
-      gyms: false
+      gyms: false,
+      coffee: false
     };
       // Confusing but could try to make a way to pass in a bunch of types rather
       // than hardcode and map through, just checking is difficult
