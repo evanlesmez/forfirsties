@@ -37,6 +37,18 @@ export default class Form extends Component {
     e.preventDefault();
     this.props.onSubmit(this.state); // Pass back to parent
   };
+
+  onReset = e => {
+    this.setState({
+      radius: "",
+      typeWord: [],
+      libraries: false,
+      coffee: false,
+      gyms: false, 
+      attractions : false
+    });
+    this.props.onSubmit(this.state);
+  }
   render() {
     console.log(this.state)
     return (
@@ -65,7 +77,7 @@ export default class Form extends Component {
             name= "attractions" 
             onChange={e => this.onChecker(e)}
             checked = {this.state.attractions}/>
-            <label htmlFor = "Attractions"> Activities</label>
+            <label htmlFor = "attractions"> Activities</label>
             </div>
         </fieldset>
       </div>
@@ -82,6 +94,7 @@ export default class Form extends Component {
         <br   />
         <button onClick = {e => this.onSubmit(e)}>Submit</button>
       </form>
+      <button onClick = {e => this.onReset(e)}> Reset</button>
       </div>
     );
   }

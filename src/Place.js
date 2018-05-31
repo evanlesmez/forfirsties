@@ -43,21 +43,6 @@ export default class Place extends Component {
     };
     
     render() {
-    
-    const listy = (
-        <div>
-      {/* {this.state.places.map((p) => 
-        <div key={p.id}>
-          <p> Name: {p.name} </p>
-          <p> Type: {p.type} </p> 
-          <p> Lat: {p.location.lat} </p>
-          <p> Open: {p.open_hours}</p>
-        </div>
-        
-      )} */}
-     </div> 
-    );
-    
 
       return (
         <div>
