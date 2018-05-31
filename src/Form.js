@@ -10,7 +10,7 @@ export default class Form extends Component {
       typeWord: [],
       libraries: false,
       gyms: false,
-      coffee: false
+      coffee: false,
     };
       // Confusing but could try to make a way to pass in a bunch of types rather
       // than hardcode and map through, just checking is difficult
