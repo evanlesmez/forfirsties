@@ -1,4 +1,15 @@
 import React, { Component } from 'react';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Checkbox from '@material-ui/core/Checkbox'
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import './App.css';
 
 
 export default class Form extends Component {
@@ -37,6 +48,8 @@ export default class Form extends Component {
     e.preventDefault();
     this.props.onSubmit(this.state); // Pass back to parent
   };
+
+
   render() {
     console.log(this.state)
     return (
@@ -44,35 +57,36 @@ export default class Form extends Component {
       <div>
      
       <div>
-        <fieldset /*onClick = {console.log(this.state)}*/>
+        <FormControl /*onClick = {console.log(this.state)}*/>
           <legend> What are you looking for? </legend>
           <div >
-            <input type="checkbox" id = "typeWord" 
+            <Checkbox type="checkbox" id = "typeWord" 
             name= "libraries" 
             onChange={e => this.onChecker(e)}
             checked = {this.state.libraries}/>
             <label htmlFor = "libraries"> Libraries</label>
           </div>
           <div >
-            <input type="checkbox" id = "typeWord" 
+            <Checkbox type="checkbox" id = "typeWord" 
             name= "gyms" 
             onChange={e => this.onChecker(e)}
             checked = {this.state.gyms}/>
             <label htmlFor = "gyms"> Gyms</label>
           </div>
           <div >
-          <input type="checkbox" id = "typeWord" 
+          <Checkbox type="checkbox" id = "typeWord" 
             name= "attractions" 
             onChange={e => this.onChecker(e)}
             checked = {this.state.attractions}/>
             <label htmlFor = "Attractions"> Activities</label>
             </div>
-        </fieldset>
+        </FormControl>
       </div>
       
       <form >
         <br />
-        <input
+        <TextField
+        className = "distance_input"
         name = "radius"   // name is parameter 
         type = "number"  max = "10"
         placeholder = "Distance in Miles" 
@@ -80,7 +94,9 @@ export default class Form extends Component {
         /* onChange={e => this.setState({name: e.target.value})}/> */
         onChange={e => this.change(e)}/>
         <br   />
-        <button onClick = {e => this.onSubmit(e)}>Submit</button>
+        <Button variant="raised" color="primary"  onClick = {e => this.onSubmit(e)}>
+        Submit
+      </Button>
       </form>
       </div>
     );

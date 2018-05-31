@@ -5,6 +5,7 @@ import { Popup } from "react-mapbox-gl";
 import { Cluster } from "react-mapbox-gl";
 import { ZoomControl } from "react-mapbox-gl";
 import { ScaleControl } from "react-mapbox-gl";
+import Button from '@material-ui/core/Button';
 import axios from 'axios';
 let key = 'AIzaSyBScFw2LtRCXni2EFQDKgmaSFEwyLYRVGM';
 
@@ -27,7 +28,18 @@ const Map = ReactMapboxGl({
           popupname: "", 
           address:""  
         }; 
+
     }
+
+    onSubmit = e => {
+      e.preventDefault();
+      this.setState({
+        center: [-78.5080, 38.0336], 
+        zoom: [12],
+        popupcoord: [135.0000, 82.8628]
+      }); 
+    };
+
     render() {
       console.log(markers);
       console.log(this.props.data1)
@@ -49,11 +61,13 @@ const Map = ReactMapboxGl({
       });
       console.log(markers);
       return (
+        <div>
         <Map
           style="mapbox://styles/deepakg123/cjhqzkvx54nra2qmjyc8d4n7t"
-          containerStyle={{ width: '100vw', height: '70vh'}}
+          containerStyle={{ width: '80vw', height: '80vh'}}
           center = {this.state.center}
           zoom = {this.state.zoom}
+
         >
         {markers}
         <ZoomControl/>
@@ -67,8 +81,13 @@ const Map = ReactMapboxGl({
             <p>{this.state.address}</p>
 
         </Popup>
-        
         </Map>
+
+        <Button variant="raised" color="secondary"  
+        onClick = {e => this.onSubmit(e)}>
+        Reset Map 
+      </Button>
+      </div> 
       );
     }
   }

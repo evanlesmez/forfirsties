@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './Place.css';
 import Form from './Form.js';
 import Map1 from './Map1.js';
+import Button from '@material-ui/core/Button';
+
 
 //https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=48.856614%2C2.3522219&radius=20000&keyword=things%20to%20do%20in%20Paris&rankby=prominence&key=YOUR_API_KEY
 
@@ -41,6 +44,15 @@ export default class Place extends Component {
         console.log(error);
         });
     };
+
+    // onHit = e => {
+    //     e.preventDefault();
+    //     this.setState({
+    //         places: [],  // Be careful with arrays!!!!!!
+    //         fields: {typeWord: "", 
+    //         radius: ""}
+    //     })
+    //   };
     
     render() {
     
@@ -60,10 +72,21 @@ export default class Place extends Component {
     
 
       return (
-        <div>
+        <div
+        className = "components">
+        <div
+        class = "Form">
         <Form onSubmit = {fields => this.onSubmit(fields)}/>
         {listy}
-        <Map1 data1 = {this.state.places} />
+        {/* <Button variant="raised" color="secondary"  onClick = {e => this.onHit(e)}>
+        Reset Selection 
+      </Button> */}
+        </div>
+        <div
+        class = "Map"> 
+        <Map1
+        data1 = {this.state.places} />
+        </div> 
         </div>
       );
     }
