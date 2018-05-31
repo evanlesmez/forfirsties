@@ -14,8 +14,6 @@ const Map = ReactMapboxGl({
     accessToken: 'pk.eyJ1IjoiZGVlcGFrZzEyMyIsImEiOiJjamhtN3gxNzcwOXdkMzBwbGM0dXRpYmZxIn0.qN-2IKGQMoYjyg8rHThRLA'
   });
 
- 
-
   class Map1 extends React.Component {
     
     constructor() {
@@ -27,8 +25,6 @@ const Map = ReactMapboxGl({
         }; 
     }
     render() {
-      console.log(markers);
-      console.log(this.props.data1)
       const markers = this.props.data1.map(shop => {
         return (
           <Marker
@@ -50,7 +46,6 @@ const Map = ReactMapboxGl({
         </Popup>
         );
       });
-      console.log(markers);
       return (
         <Map
           style="mapbox://styles/deepakg123/cjhqzkvx54nra2qmjyc8d4n7t"
@@ -60,18 +55,7 @@ const Map = ReactMapboxGl({
         >
         {markers}
         <ZoomControl/>
-        <ScaleControl/>
-        {/* <Popup
-          coordinates={[-78.506085, 38.036346]}
-          offset={{
-            'bottom-left': [12, -38],  'bottom': [0, -38], 'bottom-right': [-12, -38]
-          }}>
-          <h1>Popup</h1>
-        </Popup> */}
-
-      
-      {/* {popups} */}
-        
+        <ScaleControl/> 
         </Map>
       );
     }
