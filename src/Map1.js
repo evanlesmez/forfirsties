@@ -1,22 +1,17 @@
-import React, { Component } from 'react';
-import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
+import React from 'react';
+import ReactMapboxGl from "react-mapbox-gl";
 import { Marker } from "react-mapbox-gl";
 import { Popup } from "react-mapbox-gl";
-import { Cluster } from "react-mapbox-gl";
 import { ZoomControl } from "react-mapbox-gl";
 import { ScaleControl } from "react-mapbox-gl";
-import Button from '@material-ui/core/Button';
-import axios from 'axios';
-import image from './Outstanding-Road-Map-Vectors-3.jpg'
-let key = 'AIzaSyBScFw2LtRCXni2EFQDKgmaSFEwyLYRVGM';
+
+
 
 
 
 const Map = ReactMapboxGl({
     accessToken: 'pk.eyJ1IjoiZGVlcGFrZzEyMyIsImEiOiJjamhtN3gxNzcwOXdkMzBwbGM0dXRpYmZxIn0.qN-2IKGQMoYjyg8rHThRLA'
   });
-
- 
 
   class Map1 extends React.Component {
     
@@ -42,9 +37,7 @@ const Map = ReactMapboxGl({
     };
 
     render() {
-      console.log(markers);
-      console.log(this.props.data1)
-      const markers = this.props.data1.map(shop => {
+      let markers = this.props.data1.map(shop => {
         return (
           <Marker
           key = {shop.key}
@@ -60,7 +53,7 @@ const Map = ReactMapboxGl({
           </Marker>
         );
       });
-      console.log(markers);
+      
       return (
         <div>
         <Map

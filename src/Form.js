@@ -20,12 +20,14 @@ export default class Form extends Component {
     super(props);
     this.state = {
       radius: "",
-      typeWord: "",
+      typeWord: [],
       libraries: false,
+      coffee: false,
       gyms: false, 
       attractions : false, 
       street: "", 
-      city: "",  
+      city: ""  
+ 
     };
       // Confusing but could try to make a way to pass in a bunch of types rather
       // than hardcode and map through, just checking is difficult
@@ -34,7 +36,7 @@ export default class Form extends Component {
   
   change = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value  // can't put stuff before e for some reason
     });
   };
 
@@ -42,20 +44,35 @@ export default class Form extends Component {
     this.setState({
       [e.target.name]: e.target.checked
     });
-    this.setState({
-      typeWord: e.target.name
-    });
+    let typeArr = this.state.typeWord;
+    if(typeArr.includes(e.target.name) !== true){
+      typeArr.push(e.target.name);
     };
-      
-  onSubmit = e => {
-    e.preventDefault();
-    this.props.onSubmit(this.state); // Pass back to parent
+    this.setState({
+      typeWord: typeArr
+    });
   };
 
+  onSubmit = e => {
+    
+    this.props.onSubmit(this.state); // Pass back to parent
+    e.preventDefault();
+  };
 
+  onReset = e => {
+    this.setState({
+      radius: "",
+      typeWord: [],
+      libraries: false,
+      coffee: false,
+      gyms: false, 
+      attractions : false
+    },this.onSubmit(e));
+    this.props.onReset(e);  // This sets the state of keywords back to blanks
+      // This clears all the places in Place.js
+  }
 
   render() {
-    console.log(this.state)
     return (
       
       <div>
@@ -80,6 +97,7 @@ export default class Form extends Component {
               />
           </div>  */}
       <div>
+
       <div className= "addy">
             <TextField
                 name = "street"
@@ -96,7 +114,9 @@ export default class Form extends Component {
                 margin="normal"
               />
           </div> 
-        <FormControl /*onClick = {console.log(this.state)}*/>
+        <FormControl />
+        <fieldset>
+
           <legend> What are you looking for? </legend>
           <div >
             <Checkbox type="checkbox" id = "typeWord" 
@@ -117,8 +137,9 @@ export default class Form extends Component {
             name= "attractions" 
             onChange={e => this.onChecker(e)}
             checked = {this.state.attractions}/>
-            <label htmlFor = "Attractions"> Activities</label>
+            <label htmlFor = "attractions"> Activities</label>
             </div>
+        </fieldset>
         </FormControl>
       </div>
       
@@ -137,6 +158,7 @@ export default class Form extends Component {
         Submit
       </Button>
       </form>
+      <button onClick = {e => this.onReset(e)}> Reset</button>
       </div>
     );
   }
