@@ -7,7 +7,6 @@ import { ZoomControl } from "react-mapbox-gl";
 import { ScaleControl } from "react-mapbox-gl";
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
-import image from './Outstanding-Road-Map-Vectors-3.jpg'
 let key = 'AIzaSyBScFw2LtRCXni2EFQDKgmaSFEwyLYRVGM';
 
 
@@ -20,8 +19,8 @@ const Map = ReactMapboxGl({
 
   class Map1 extends React.Component {
     
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
           center: [-78.5080, 38.0336],
           zoom: [12],
@@ -40,6 +39,15 @@ const Map = ReactMapboxGl({
         popupcoord: [135.0000, 82.8628]
       }); 
     };
+    changeCenter = e => {
+      e.preventDefault();
+      this.setState({
+        center: [this.props.long, this.props.latt], 
+        zoom: [12],
+        popupcoord: [this.props.long, this.props.latt]
+      }); 
+    };
+
 
     render() {
       console.log(markers);
@@ -87,6 +95,10 @@ const Map = ReactMapboxGl({
         <Button variant="raised" color="secondary"  
         onClick = {e => this.onSubmit(e)}>
         Reset Map 
+      </Button>
+      <Button variant="raised" color="secondary"  
+        onClick = {e => this.changeCenter(e)}>
+        fuck this
       </Button>
       </div> 
       );

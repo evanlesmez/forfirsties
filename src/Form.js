@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios'
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
