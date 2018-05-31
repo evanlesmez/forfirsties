@@ -20,7 +20,7 @@ export default class Form extends Component {
   
   change = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value  // can't put stuff before e for some reason
     });
   };
 
@@ -29,16 +29,18 @@ export default class Form extends Component {
       [e.target.name]: e.target.checked
     });
     let typeArr = this.state.typeWord;
-    typeArr.push(e.target.name);
+    if(typeArr.includes(e.target.name) !== true){
+      typeArr.push(e.target.name);
+    };
     this.setState({
       typeWord: typeArr
     });
   };
 
   onSubmit = e => {
-    e.preventDefault();
+    
     this.props.onSubmit(this.state); // Pass back to parent
-    console.log(this.state.typeWord);
+    e.preventDefault();
   };
 
   onReset = e => {
@@ -49,17 +51,17 @@ export default class Form extends Component {
       coffee: false,
       gyms: false, 
       attractions : false
-    });
-    this.props.onSubmit(this.state);
+    },this.onSubmit(e));
+    this.props.onReset(e);  // This sets the state of keywords back to blanks
+      // This clears all the places in Place.js
   }
   render() {
-    console.log(this.state)
     return (
       
       <div>
      
       <div>
-        <fieldset /*onClick = {console.log(this.state)}*/>
+        <fieldset>
           <legend> What are you looking for? </legend>
           <div >
             <input type="checkbox" id = "typeWord" 

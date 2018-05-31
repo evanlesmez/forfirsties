@@ -14,31 +14,40 @@ export default class Place extends Component {
         super(props);
         this.state = {
             places: [],  // Be careful with arrays!!!!!!
-            fields: {typeWord: "", 
+            fields: {typeWord: [], 
             radius: ""}
         };
     };
-    
     onSubmit = (fields) => {
-        this.setState({ fields});
-        let typeWord = this.state.fields.typeWord;
-        let radiusNum = parseFloat(this.state.fields.radius) * 1609.34; // Miles to meters
-        let radiusStr = radiusNum.toString();
-        console.log("Type: " + typeWord + " Radius: " + radiusStr);
-       
-        axios.get(frontUrl+'location=38.034269,%20-78.494087&radius='+radiusStr+'&keyword='+typeWord+'&key='+key)
-        .then( (response) =>{
-            let axiosPlaces = response.data.results.map((place)=>{
-            return {key: place.id, name: place.name, types: place.types, address: place.vicinity, 
-                    coord: [place.geometry.location.lng, place.geometry.location.lat]}
+        this.setState({fields});
+        this.state.fields.typeWord.map((word)=>{
+            let typeWord = word;
+            let radiusNum = parseFloat(this.state.fields.radius) * 1609.34; // Miles to meters
+            let radiusStr = radiusNum.toString();
+            console.log("Type: " + typeWord + " Radius: " + radiusStr);
+        
+            axios.get(frontUrl+'location=38.034269,%20-78.494087&radius='+radiusStr+'&keyword='+typeWord+'&key='+key)
+            .then( (response) =>{
+                let axiosPlaces = this.state.places;
+                response.data.results.map((place)=>{
+                return axiosPlaces.push({key: place.id, name: place.name, types: place.types, address: place.vicinity, 
+                        coord: [place.geometry.location.lng, place.geometry.location.lat]})
+                });
+                this.setState({
+                    places: axiosPlaces, 
+                });
+            })
+            .catch(function (error) {
+            console.log(error);
         });
-        this.setState({
-            places: axiosPlaces, 
-        });
+        return this.state.places;
+    });
         console.log(this.state.places);
-    })
-        .catch(function (error) {
-        console.log(error);
+    };
+    
+    onReset = (e) => {
+        this.setState({
+            places: [],  
         });
     };
     
@@ -46,7 +55,9 @@ export default class Place extends Component {
 
       return (
         <div>
-        <Form onSubmit = {fields => this.onSubmit(fields)}/>
+        <Form onSubmit = {fields => this.onSubmit(fields)}
+            onReset = {e => this.onReset(e)}/>
+
         <Map1 data1 = {this.state.places} />
         </div>
       );

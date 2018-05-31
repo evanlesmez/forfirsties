@@ -1,12 +1,9 @@
-import React, { Component } from 'react';
-import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
+import React from 'react';
+import ReactMapboxGl from "react-mapbox-gl";
 import { Marker } from "react-mapbox-gl";
 import { Popup } from "react-mapbox-gl";
-import { Cluster } from "react-mapbox-gl";
 import { ZoomControl } from "react-mapbox-gl";
 import { ScaleControl } from "react-mapbox-gl";
-
-let key = 'AIzaSyBScFw2LtRCXni2EFQDKgmaSFEwyLYRVGM';
 
 
 
@@ -27,7 +24,7 @@ const Map = ReactMapboxGl({
         }; 
     }
     render() {
-      const markers = this.props.data1.map(shop => {
+      let markers = this.props.data1.map(shop => {
         return (
           <Marker
           key = {shop.key}
