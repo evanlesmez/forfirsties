@@ -28,14 +28,17 @@ export default class Form extends Component {
     this.setState({
       [e.target.name]: e.target.checked
     });
+    let typeArr = this.state.typeWord;
+    typeArr.push(e.target.name);
     this.setState({
-      typeWord: e.target.name
+      typeWord: typeArr
     });
-    };
-      
+  };
+
   onSubmit = e => {
     e.preventDefault();
     this.props.onSubmit(this.state); // Pass back to parent
+    console.log(this.state.typeWord);
   };
 
   onReset = e => {

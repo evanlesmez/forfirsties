@@ -5,7 +5,7 @@ import { Popup } from "react-mapbox-gl";
 import { Cluster } from "react-mapbox-gl";
 import { ZoomControl } from "react-mapbox-gl";
 import { ScaleControl } from "react-mapbox-gl";
-import axios from 'axios';
+
 let key = 'AIzaSyBScFw2LtRCXni2EFQDKgmaSFEwyLYRVGM';
 
 
