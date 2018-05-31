@@ -3,6 +3,9 @@ import axios from 'axios';
 import Form from './Form.js';
 import Map1 from './Map1.js';
 
+//https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=48.856614%2C2.3522219&radius=20000&keyword=things%20to%20do%20in%20Paris&rankby=prominence&key=YOUR_API_KEY
+
+//https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=38.033554,-78.507980&radius=3000&keyword=attractions&key=AIzaSyBpOYv-IGc-A32HwamYneZsTa1FsquVnrM
 const frontUrl = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
 let key = 'AIzaSyBScFw2LtRCXni2EFQDKgmaSFEwyLYRVGM';
 
@@ -26,7 +29,7 @@ export default class Place extends Component {
         axios.get(frontUrl+'location=38.034269,%20-78.494087&radius='+radiusStr+'&keyword='+typeWord+'&key='+key)
         .then( (response) =>{
             let axiosPlaces = response.data.results.map((place)=>{
-            return {key: place.id, name: place.name, types: place.types, 
+            return {key: place.id, name: place.name, types: place.types, address: place.vicinity, 
                     coord: [place.geometry.location.lng, place.geometry.location.lat]}
         });
         this.setState({
