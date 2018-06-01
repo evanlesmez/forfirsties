@@ -1,0 +1,24 @@
+.components{
+    width: 100%;
+    padding-bottom: -15%; 
+}
+
+.Map{
+    display: inline-block;
+    width: 46%;
+   display: inline-block; 
+   padding-right: 30%; 
+   margin: 0% 
+}
+.Form{
+    display: inline-block;
+    text-align: left; 
+    width:15%;
+    padding-right: -10%;  
+}
+.addy {
+    padding-bottom: 50%; 
+}
+
+
+

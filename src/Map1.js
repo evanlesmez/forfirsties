@@ -4,6 +4,7 @@ import { Marker } from "react-mapbox-gl";
 import { Popup } from "react-mapbox-gl";
 import { ZoomControl } from "react-mapbox-gl";
 import { ScaleControl } from "react-mapbox-gl";
+import Button from '@material-ui/core/Button';
 
 
 
@@ -13,16 +14,36 @@ const Map = ReactMapboxGl({
 
   class Map1 extends React.Component {
     
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
           center: [-78.5080, 38.0336],
-          zoom: [12],
+          zoom: [13],
           popupcoord: [135.0000, 82.8628], 
           popupname: "", 
           address:""  
         }; 
+
     }
+
+    onSubmit = e => {
+      e.preventDefault();
+      this.setState({
+        center: [-78.5080, 38.0336], 
+        zoom: [13],
+        popupcoord: [135.0000, 82.8628]
+      }); 
+    };
+    changeCenter = e => {
+      e.preventDefault();
+      this.setState({
+        center: [this.props.long, this.props.latt], 
+        zoom: [15],
+        popupcoord: [this.props.long, this.props.latt]
+      }); 
+    };
+
+
     render() {
       let markers = this.props.data1.map(shop => {
         return (
@@ -42,11 +63,13 @@ const Map = ReactMapboxGl({
       });
       
       return (
+        <div>
         <Map
           style="mapbox://styles/deepakg123/cjhqzkvx54nra2qmjyc8d4n7t"
-          containerStyle={{ width: '100vw', height: '70vh'}}
+          containerStyle={{ width: '80vw', height: '80vh'}}
           center = {this.state.center}
           zoom = {this.state.zoom}
+
         >
         {markers}
         <ZoomControl/>
@@ -60,8 +83,17 @@ const Map = ReactMapboxGl({
             <p>{this.state.address}</p>
 
         </Popup>
-        
         </Map>
+
+        <Button variant="raised" color="secondary"  
+        onClick = {e => this.onSubmit(e)}>
+        Charlottesville 
+      </Button>
+      <Button variant="raised" color="secondary"  
+        onClick = {e => this.changeCenter(e)}>
+        Zoom to Address (Submit First)
+      </Button>
+      </div> 
       );
     }
   }
