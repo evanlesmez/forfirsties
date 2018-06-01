@@ -64,21 +64,28 @@ export default class Form extends Component {
         <fieldset>
           <legend> What are you looking for? </legend>
           <div >
-            <input type="checkbox" id = "typeWord" 
+            <input type="checkbox" 
             name= "libraries" 
             onChange={e => this.onChecker(e)}
             checked = {this.state.libraries}/>
             <label htmlFor = "libraries"> Libraries</label>
           </div>
           <div >
-            <input type="checkbox" id = "typeWord" 
+            <input type="checkbox" 
             name= "gyms" 
             onChange={e => this.onChecker(e)}
             checked = {this.state.gyms}/>
             <label htmlFor = "gyms"> Gyms</label>
           </div>
           <div >
-          <input type="checkbox" id = "typeWord" 
+          <input type="checkbox" 
+            name= "attractions" 
+            onChange={e => this.onChecker(e)}
+            checked = {this.state.attractions}/>
+            <label htmlFor = "attractions"> Activities</label>
+            </div>
+            <div >
+          <input type="checkbox" 
             name= "attractions" 
             onChange={e => this.onChecker(e)}
             checked = {this.state.attractions}/>
