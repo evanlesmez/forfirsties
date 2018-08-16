@@ -21,7 +21,6 @@ export default class Form extends Component {
       coffee: false,
       gyms: false,
       attractions: false,
-      mealexchange: true,
       street: ""
     };
     // Confusing but could try to make a way to pass in a bunch of types rather
@@ -63,8 +62,8 @@ export default class Form extends Component {
         gyms: false,
         attractions: false,
         streets: ""
-      }
-      //this.onSubmit(e)
+      },
+      this.onSubmit(e)
     );
     this.props.onReset(e); // This sets the state of keywords back to blanks
     // This clears all the places in Place.js
@@ -133,15 +132,6 @@ export default class Form extends Component {
                   checked={this.state.coffee}
                 />
                 <label htmlFor="coffee"> Coffee</label>
-              </div>
-              <div>
-                <Checkbox
-                  type="mealexchange"
-                  name="mealexchange"
-                  onChange={e => this.onChecker(e)}
-                  checked={this.state.mealexchange}
-                />
-                <label htmlFor="meal"> Meal Exchange</label>
               </div>
             </FormControl>
           </div>

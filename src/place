@@ -19,12 +19,18 @@ export default class Place extends Component {
     super(props);
     this.state = {
       places: [], // Be careful with arrays!!!!!!
+      fields: {
+        typeWord: [],
+        radius: "",
+        street: ""
+      },
       lat: "",
       long: ""
     };
   }
   onSubmit = fields => {
-    let street = fields.street;
+    this.setState({ fields });
+    let street = this.state.fields.street;
     console.log(street);
     if (street != undefined) {
       street = street.split(" ").join("+");
@@ -41,10 +47,11 @@ export default class Place extends Component {
             lat: res.data.results[0].geometry.location.lat,
             long: res.data.results[0].geometry.location.lng
           });
-          fields.typeWord.map(word => {
+          this.state.fields.typeWord.map(word => {
             let typeWord = word;
-            let radiusNum = parseFloat(fields.radius) * 1609.34; // Miles to meters
+            let radiusNum = parseFloat(this.state.fields.radius) * 1609.34; // Miles to meters
             let radiusStr = radiusNum.toString();
+
             axios
               .get(
                 frontUrl +

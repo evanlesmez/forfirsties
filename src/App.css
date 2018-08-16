@@ -14,7 +14,6 @@
   color: white;
 }
 
-
 .title {
   font-family: times, Times New Roman, times-roman, georgia, serif;
   color: #444;
@@ -23,18 +22,55 @@
   font-size: 51px;
   line-height: 44px;
   letter-spacing: -2px;
-  font-weight: bold; 
+  font-weight: bold;
 }
-
-
 
 .App-intro {
   font-size: large;
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
+.components {
+  width: 100%;
+  padding-bottom: -15%;
+}
 
+.Map {
+  display: inline-block;
+  width: 46%;
+  display: inline-block;
+  padding-right: 30%;
+  margin: 0%;
+}
+.Form {
+  display: inline-block;
+  text-align: left;
+  width: 15%;
+  padding-right: -10%;
+}
+.addy {
+}
+
+.dist {
+  padding-bottom: 75%;
+}
+
+.checkbox {
+  padding-bottom: 50%;
+}
+
+.buttons {
+  padding-bottom: 75%;
+}
+
+.mapbuttons {
+  padding-left: 31%;
+}
